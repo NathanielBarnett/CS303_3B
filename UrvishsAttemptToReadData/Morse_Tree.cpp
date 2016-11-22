@@ -20,7 +20,7 @@ void MorseTree::filereading()
     //if file is good, start reading it
     while (!read_morse.eof())
     {
-        getline(read_morse, readline) // read line by line
+        getline(read_morse, readline); // read line by line
         buildBinaryTree(readline.substr(0, 1), code); //send the first letter and the code to the function to create the tree
     }
 
