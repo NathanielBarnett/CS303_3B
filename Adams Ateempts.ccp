@@ -67,8 +67,8 @@ void MorseTree::encode(string letters)
 {
     while (letters.length() != 0)
     {
-        cout << letter_morse.find(letters.length() - 1)->second << " ";
-        letters.erase(letters.length() - 1);
+        cout << letter_morse.find(letters[0])->second << " ";
+        letters.erase(letters[0]);
     }
 }
 
