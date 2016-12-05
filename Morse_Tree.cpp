@@ -1,9 +1,14 @@
 #pragma once
+//FANCY HEADER
+//FANCY HEADER
+//FANCY HEADER
+
+
 #include <iostream>
 #include "Morse_Tree.h"
 
 
-void MorseTree::filereading()
+void MorseTree::filereading()	
 {
 	string readline;
 	string code;
@@ -14,13 +19,14 @@ void MorseTree::filereading()
 	if (!read_morse)
 	{
 		cout << "Error reading file" << endl;
-		//break? probably use exit()?
+		return;
 	}
 
 	//if file is good, start reading it
 	while (!read_morse.eof())
 	{
 		getline(read_morse, readline); // read line by line
+		fill_map(readline.substr(0, 1), readline.substr(1));
 		buildBinaryTree(readline.substr(0, 1), readline.substr(1)); //send the first letter and the code to the function to create the tree
 	}
 
@@ -60,6 +66,7 @@ void MorseTree::buildBinaryTree(const string& letter, const string& code)
 
 void MorseTree::fill_map()
 {
+	
 	letter_morse['a'] = "._";
 	letter_morse['b'] = "_...";
 	letter_morse['c'] = "_._.";
@@ -88,8 +95,16 @@ void MorseTree::fill_map()
 	letter_morse['z'] = "__..";
 }
 
+void MorseTree::fill_map(const string& letter, const string& code)
+{
+	char temp_letter = letter[0];	// take first character of string and use as key for map
+	letter_morse[temp_letter] = code;	// insert key and value into map, if not already present
+}
+
 void MorseTree::encode(string letters)
 {
+	//while string is not empty, output the morse code representation of each character, 
+	//inserting a space after each letter
 	while (letters.length() != 0)
 	{
 		cout << letter_morse.find(letters[0])->second << " ";
