@@ -1,14 +1,15 @@
 #pragma once
-//FANCY HEADER
-//FANCY HEADER
-//FANCY HEADER
+//Instructor: Prof. Kuhail
+//Student Names: Adam Bergman, Urvish Shah, Nathaniel Barnett
+//Project 3B
+//Date: 12-06-16
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <map>
 #include "BTNode.h"
-#include "String_Tokenizer.h"
+
 
 using namespace std;
 
@@ -16,8 +17,14 @@ class MorseTree
 {
 public:
 
-	//
-	void print();
+	//wrapper for printing function
+	void print() { BTNode<string>* cursor = root; 
+	cout << "In-order traversal of Morse Tree -> ";
+							print(cursor);
+							cout << endl;}
+
+	//actual printing function to print out an in-order traversal of Morse_Tree
+	void print(BTNode<string>*& cursor);
 
 	//constructor
 	MorseTree() { ; }
