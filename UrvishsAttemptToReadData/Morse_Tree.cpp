@@ -33,22 +33,22 @@ void MorseTree::buildBinaryTree(const string& letter, const string& code)
     //Follow through the data
     for (unsigned int i = 0; i < code.length(); i++) //if I don't use unsigned I get an error
     {
-        if (dot.find(code[i])) //if its dot, go left
+        if (code[i] == dot) //if its dot, go left
         {
-            if (dataNode->right == nullptr) //Check to see if the node exists or not
+            if (dataNode->left == nullptr) //Check to see if the node exists or not
             {
-                dataNode->right = new BTNode<string>("dummy node"); //If it does not exist, create a dummy
+                dataNode->left = new BTNode<string>("dummy node"); //If it does not exist, create a dummy
             }
-            dataNode = dataNode->right; 
+            dataNode = dataNode->left; 
         }
 
-        else if (dash.find(code[i])) //if its dash go right
+        else if (code[i] == dash) //if its dash go right
         {
-            if (dataNode->left == nullptr)
+            if (dataNode->right == nullptr)
             {
-                dataNode->left = new BTNode<string>("dummy node");
+                dataNode->right = new BTNode<string>("dummy node");
             }
-            dataNode = dataNode->left;
+            dataNode = dataNode->right;
         }
     }
 
