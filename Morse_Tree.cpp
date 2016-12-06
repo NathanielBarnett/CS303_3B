@@ -1,8 +1,8 @@
 #pragma once
-//FANCY HEADER
-//FANCY HEADER
-//FANCY HEADER
-
+//Instructor: Prof. Kuhail
+//Student Names: Adam Bergman, Urvish Shah, Nathaniel Barnett
+//Project 3B
+//Date: 12-06-16
 
 #include <iostream>
 #include "Morse_Tree.h"
@@ -105,15 +105,20 @@ void MorseTree::encode(string letters)
 {
 	//while string is not empty, output the morse code representation of each character, 
 	//inserting a space after each letter
+	
+	cout << "Encoded word -> ";
 	while (letters.length() != 0)
 	{
 		cout << letter_morse.find(letters[0])->second << " ";
 		letters = letters.substr(1);
 	}
+	cout << endl;
 }
 void MorseTree::decode(string code)
 {
 	dataNode = root;
+
+	cout << "Decoded word -> ";
 
 	//Follow through the data
 	for (unsigned int i = 0; i < code.length(); i++) //if I don't use unsigned I get an error
@@ -132,17 +137,22 @@ void MorseTree::decode(string code)
 			dataNode = root;
 		}
 	}
+
+	cout << endl;
 }
 
-void MorseTree::print()
+void MorseTree::print(BTNode<string>*& cursor)
 {
-	cout << root->data << endl;
-	cout << root->left->data << endl; // layer 1
-	
-	cout << root->right->data << endl;
-	cout << root->left->right->data << endl;
-	cout << root->left->left->data << endl;
-	cout << root->right->right->data << endl;
-	cout << root->right->right->left->data << endl;
-	cout << root->left->left->left->left->data << endl; // layer 4
+	//In-order traversal of tree to print out data in nodes
+	if (cursor->left != NULL)
+	{
+		print(cursor->left);
+	}
+
+	cout << cursor->data << " ";
+
+	if (cursor->right != NULL)
+	{
+		print(cursor->right);
+	}
 }
